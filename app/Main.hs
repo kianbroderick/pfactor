@@ -1,3 +1,5 @@
+{-# LANGUAGE TypeApplications #-}
+
 module Main where
 
 import Data.List (intercalate)
@@ -8,7 +10,7 @@ data FactorTree = Prime Integer | Composite Integer FactorTree FactorTree
   deriving (Show)
 
 isqrt :: Integer -> Integer
-isqrt = floor . sqrt . fromIntegral
+isqrt = floor @Double . sqrt . fromIntegral
 
 find2 :: Integer -> Maybe (Integer, Integer)
 find2 n =
