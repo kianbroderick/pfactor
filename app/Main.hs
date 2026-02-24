@@ -7,9 +7,12 @@ import System.Environment (getArgs)
 data FactorTree = Prime Integer | Composite Integer FactorTree FactorTree
   deriving (Show)
 
+isqrt :: Integer -> Integer
+isqrt = floor . sqrt . fromIntegral
+
 find2 :: Integer -> Maybe (Integer, Integer)
 find2 n =
-  let test = listToMaybe $ take 1 $ filter (\x -> n `mod` x == 0) [2 .. n `div` 2]
+  let test = listToMaybe $ take 1 $ filter (\x -> n `mod` x == 0) [2 .. isqrt n]
    in case test of
         Nothing -> Nothing
         Just x -> Just (x, n `div` x)
